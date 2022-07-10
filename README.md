@@ -8,8 +8,9 @@ A Todorant client for the terminal written in Python with keyboard control only.
 
 1. Clone repo
 2. `poetry install`
-3. Setup `access_token` environment variable or make `.env` file with it
-3. `make run`
+3. Or install from `PyPI` by `pip install todorant-tui`
+4. Setup `access_token` environment variable or make `.env` file with it
+5. `make run`
 
 # How to get access_token
 
@@ -73,6 +74,6 @@ The program is controlled exclusively from the keyboard. Pay attention to bold l
 
 [ ] Make animations and transition
 
-[ ] Publish to PyPI
+[x] Publish to PyPI
 
 [ ] Refactor all strings
