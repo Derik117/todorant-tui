@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "todorant-tui"
+version = "0.1.0"
+description = ""
+authors = ["Artyom Chebotaryov <ideriki@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.10"
+textual = "^0.1.18"
+httpx = "^0.23.0"
+pydantic = {extras = ["dotenv"], version = "^1.9.1"}
+textual-inputs = "^0.2.6"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+autopep8 = "^1.6.0"
+isort = "^5.10.1"
+mypy = "^0.961"
+pytest-asyncio = "^0.18.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pylint.format]
+max-line-length=80
+[tool.pyright]
+type-checking-mode="strict"
