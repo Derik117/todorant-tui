@@ -1,6 +1,6 @@
 import datetime as dt
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any, Dict, List, Optional
 
 from httpx import AsyncClient, Response
 
@@ -11,7 +11,7 @@ from .models import Current, State, TodoBase, TodoCreate, TodoUpdate
 class TodorantApi:
     access_token: str
     _client: AsyncClient = field(default_factory=AsyncClient)
-    todos: list[TodoBase] = field(default_factory=list)
+    todos: List[TodoBase] = field(default_factory=list)
     current = Current(todosCount=0, incompleteTodosCount=0, todo=None)
 
     def __post_init__(self) -> None:
@@ -27,7 +27,7 @@ class TodorantApi:
     def time(self) -> str:
         return dt.datetime.now().strftime("%HH-%MM")
 
-    async def _get(self, path: str, params: dict[str, Any] = None) -> dict[Any, Any]:
+    async def _get(self, path: str, params: Dict[str, Any] = None) -> Dict[Any, Any]:
         response = await self._client.get(
             path, params=params)
         if response.is_error:
@@ -43,7 +43,7 @@ class TodorantApi:
                 f"Error post {response.request.url}. {data=}. status_code={response.status_code}. text={response.text}")
         return response
 
-    async def _put(self, path: str, data: Optional[dict[str, Any]] = None) -> Response:
+    async def _put(self, path: str, data: Optional[Dict[str, Any]] = None) -> Response:
         if data is None:
             data = {}
         for col in ['updatedAt', 'createdAt']:

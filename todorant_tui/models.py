@@ -1,5 +1,5 @@
 import datetime as dt
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from pydantic import BaseModel, Field, validator
 
@@ -28,7 +28,7 @@ class User(BaseModel):
     telegram_id: Optional[str] = Field(alias="telegramId")
     apple_sub_id: Optional[str] = Field(alias="appleSubId")
     token: Optional[int]
-    settings: Optional[dict[Any, Any]]
+    settings: Optional[Dict[Any, Any]]
     timezone: Optional[int]
     telegram_zen: Optional[int] = Field(alias="telegramZen")
     telegram_language: Optional[str] = Field(alias="telegeamLanguage")
