@@ -10,7 +10,7 @@ A Todorant client for the terminal written in Python with keyboard control only.
 2. `poetry install`
 3. Or install from `PyPI` by `pip install todorant-tui`
 4. Setup `access_token` environment variable or make `.env` file with it
-5. `make run`
+5. `make run` or `python3 -m todorant_tui` if installed from `PyPI`
 
 # How to get access_token
 
