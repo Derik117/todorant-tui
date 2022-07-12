@@ -16,8 +16,8 @@ class CreateTodoView(GridView):
     save_or_update_button_text: str = '[underline][b]c[/b]reate[/underline]'
 
     async def on_mount(self):
-        self.text = components.TextInput(
-            title="Task [bold]t[/bold]ext", placeholder=' ')
+        self.text = components.MultilineTextInput(
+            title="Task [bold]t[/bold]ext", placeholder=' ', lines_count=8)
         self.date = components.DateInput(
             title="Task [b]d[/b]ate (YYYY-MM-DD)",
             placeholder="Enter task date in format YYYY-MM-DD",
@@ -35,8 +35,8 @@ class CreateTodoView(GridView):
         self.grid.add_column("col2", max_size=25)
         self.grid.add_column("col3", max_size=25)
         self.grid.add_column("col4", max_size=25)
-        self.grid.add_row("title", max_size=3)
-        self.grid.add_row('text', max_size=3)
+        self.grid.add_row("title", max_size=1)
+        self.grid.add_row('text', max_size=11, min_size=11)
         self.grid.add_row('others', max_size=3)
         self.grid.add_row('buttons', max_size=3)
         self.grid.add_areas(

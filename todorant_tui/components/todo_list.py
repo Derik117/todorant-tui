@@ -48,7 +48,7 @@ class TodoList(Widget):
                         '[rgb(255,127,80)]*[/rgb(255,127,80)]')
             if todo.frog or todo.completed:
                 todo_text_components.append(' ')
-            todo_text_components.append(todo.text)
+            todo_text_components.append(todo.text.replace('\n', ' '))
             todo_text = ''.join(todo_text_components)
             if style:
                 todo_text = f"[{style}]{todo_text}[/{style}]"
