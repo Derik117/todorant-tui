@@ -1,6 +1,7 @@
 from .bool_input import BoolInput
 from .current_task import CurrentTask
 from .date_input import DateInput
+from .multiline_text_input import MultilineTextInput
 from .progress import Progress
 from .text_input import TextInput
 from .todo_list import TodoList
