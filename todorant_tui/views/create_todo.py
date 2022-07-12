@@ -17,7 +17,7 @@ class CreateTodoView(GridView):
 
     async def on_mount(self):
         self.text = components.MultilineTextInput(
-            title="Task [bold]t[/bold]ext", placeholder=' ', lines_count=8)
+            title="Task [b]t[/b]ext", placeholder=' ', lines_count=8)
         self.date = components.DateInput(
             title="Task [b]d[/b]ate (YYYY-MM-DD)",
             placeholder="Enter task date in format YYYY-MM-DD",
@@ -50,7 +50,7 @@ class CreateTodoView(GridView):
             create_button='col4,buttons',
         )
         self.grid.add_widget(widgets.Static(
-            Text(self.title, justify='center', style='bold')), area='title')
+            Text(self.title, justify='center', style='b')), area='title')
         self.grid.add_widget(self.text, area='text')
         self.grid.add_widget(self.date, area='date')
         self.grid.add_widget(self.year_and_month, area='year_month')

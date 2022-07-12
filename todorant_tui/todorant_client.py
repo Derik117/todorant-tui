@@ -62,6 +62,9 @@ class TodorantApi:
     async def delete_todo(self, todo_id: str) -> None:
         await self._delete(f'/todo/{todo_id}')
 
+    async def skip_todo(self, todo_id: str) -> None:
+        await self._put(f'/todo/{todo_id}/skip')
+
     async def done_todo(self, todo_id: str) -> None:
         await self._put(f'/todo/{todo_id}/done')
 

@@ -20,7 +20,7 @@ class CurrentView(GridView):
         grid.add_row(name='tabs', fraction=2, max_size=1)
         grid.add_row(name='progress', fraction=1, max_size=2, min_size=2)
         grid.add_row(name='current_task', fraction=8, max_size=14)
-        grid.add_row(name='buttons', fraction=1, max_size=1, min_size=1)
+        grid.add_row(name='buttons', fraction=1, max_size=2, min_size=2)
         grid.add_areas(
             current_button=f'main_column1-start|main_column2-end,tabs',
             planning_button=f'main_column3-start|main_column4-end,tabs',
@@ -35,13 +35,15 @@ class CurrentView(GridView):
             '[underline]current[/underline]', style='')
         self.planning_button = widgets.Button('[b]p[/b]lanning', style='')
         self.done_button = widgets.Button(
-            '[underline][bold]d[/bold]one[/underline]', name='done', style='')
+            '[b]d[/b]one\n[b]s[/b]kip',
+            name='done',
+            style='')
         self.edit_button = widgets.Button(
-            '[underline][bold]e[/bold]dit[/underline]', name='edit', style='')
+            '[b]e[/b]dit', name='edit', style='')
         self.remove_button = widgets.Button(
-            '[underline][bold]r[/bold]emove[/underline]', name='remove', style='')
+            '[b]r[/b]emove', name='remove', style='')
         self.create_button = widgets.Button(
-            '[underline][bold]c[/bold]reate new todo[/underline]',
+            '[b]c[/b]reate new todo',
             name='create',
             style='')
         self.progress = components.Progress(**self.progress_kwargs)
@@ -90,6 +92,12 @@ class CurrentView(GridView):
         todo = self.api.current.todo
         if todo and todo.id:
             await self.api.delete_todo(todo.id)
+            await self.refresh_data()
+
+    async def on_s(self):
+        todo = self.api.current.todo
+        if todo and todo.id:
+            await self.api.skip_todo(todo.id)
             await self.refresh_data()
 
     async def on_d(self):

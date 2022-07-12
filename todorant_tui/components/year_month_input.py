@@ -48,7 +48,7 @@ class YearMonthInput(TextInput):
         self.update_title()
 
     def update_title(self):
-        status = f"[bold][{'OK' if self.is_correct else 'ERR'}][/bold]"
+        status = f"[b][{'OK' if self.is_correct else 'ERR'}][/b]"
         if self.original_title:
             status += ' '
         self.title = f"{status}{self.original_title}"

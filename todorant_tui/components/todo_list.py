@@ -1,3 +1,4 @@
+import textwrap
 from typing import TYPE_CHECKING, List
 
 from rich.console import Group, RenderableType
@@ -33,7 +34,7 @@ class TodoList(Widget):
                 prev_todo_date = prev_todo.get_full_date() or prev_todo.month_and_year
             date = todo.get_full_date() or todo.month_and_year
             if prev_todo_date != date:
-                date_text = Text(date, justify='left', style='bold')
+                date_text = Text(date, justify='left', style='b')
                 if date == self.app.api.date:
                     date_text.append(' TODAY')
                 texts.append(date_text)
@@ -48,7 +49,10 @@ class TodoList(Widget):
                         '[rgb(255,127,80)]*[/rgb(255,127,80)]')
             if todo.frog or todo.completed:
                 todo_text_components.append(' ')
-            todo_text_components.append(todo.text.replace('\n', ' '))
+            todo_text_components.append(
+                textwrap.shorten(
+                    todo.text.replace(
+                        '\n', ' '), 85))
             todo_text = ''.join(todo_text_components)
             if style:
                 todo_text = f"[{style}]{todo_text}[/{style}]"

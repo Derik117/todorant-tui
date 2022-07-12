@@ -30,19 +30,17 @@ class PlanningView(GridView):
 
     async def on_mount(self):
         self.api = self.app.api  # type: ignore
-        # await self.api.fetch_todos()
         grid = self.grid
         grid.set_align('center', 'center')
         grid.add_column(name='main_column', max_size=25, repeat=4)
-        grid.add_row(name='tabs', fraction=2, max_size=1)
+        grid.add_row(name='tabs', fraction=2, max_size=2, min_size=2)
         grid.add_row(name='pagination', fraction=2, max_size=1)
-        grid.add_row(name='todo_list', fraction=1, max_size=15, min_size=15)
-        grid.add_row(name='controls', fraction=1, max_size=1)
+        grid.add_row(name='todo_list', fraction=1, max_size=14, min_size=14)
+        grid.add_row(name='controls', fraction=1, max_size=2)
         grid.add_areas(
             current_button=f'main_column1-start|main_column2-end,tabs',
             planning_button=f'main_column3-start|main_column4-end,tabs',
-            show_hide_completed=f'main_column1-start|main_column2-end,pagination',
-            pagination=f'main_column3-start|main_column4-end,pagination',
+            pagination=f'main_column1-start|main_column4-end,pagination',
             todo_list=f'main_column1-start|main_column4-end,todo_list',
             done=f'main_column1,controls',
             edit=f'main_column2,controls',
@@ -54,32 +52,32 @@ class PlanningView(GridView):
         self.planning_button = widgets.Button(
             '[underline]planning[/underline]', style='')
         self.done_button = widgets.Button(
-            '[underline][bold]d[/bold]one[/underline] selected',
+            '[b]d[/b]one selected',
             name='done',
             style='')
         self.edit_button = widgets.Button(
-            '[underline][bold]e[/bold]dit[/underline] selected',
+            '[b]e[/b]dit selected',
             name='edit',
             style='')
         self.remove_button = widgets.Button(
-            '[underline][bold]r[/bold]emove[/underline] selected',
+            '[b]r[/b]emove selected',
             name='remove',
             style='')
         self.create_button = widgets.Button(
-            '[underline][bold]c[/bold]reate new todo[/underline]',
+            '[b]c[/b]reate new todo',
             name='create',
             style='')
         self.todo_list = components.TodoList(**self.todo_list_kwargs)
-        self.pagination = widgets.Static(**self.pagination_kwargs)
+        self.pagination = widgets.Static(
+            **self.pagination_kwargs, style='')
         self.show_hide_completed = widgets.Static(
             **self.show_hide_completed_kwargs)
         grid.place(
             current_button=self.current_button,
             planning_button=self.planning_button,
-            show_hide_completed=self.show_hide_completed,
             todo_list=self.todo_list,
             pagination=self.pagination,
-            done=self.done_button,
+            done=self.show_hide_completed,
             edit=self.edit_button,
             remove=self.remove_button,
             create=self.create_button,
@@ -97,14 +95,14 @@ class PlanningView(GridView):
     @property
     def show_hide_completed_kwargs(self):
         return {
-            'renderable': f"[underline]{'[b]h[/b]ide' if self.show_completed else 's[b]h[/b]ow'}[/underline] completed"}
+            'renderable': f"[b]d[/b]one selected\n{'[b]h[/b]ide' if self.show_completed else 's[b]h[/b]ow'} completed"}
 
     @property
     def pagination_kwargs(self):
         return {
             'renderable': Text(
                 f"Page {self.current_page} of {self.total_pages}",
-                justify='left')}
+                justify='center')}
 
     async def on_u(self):
         self.app.switch_view('CurrentView')
