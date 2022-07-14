@@ -35,6 +35,7 @@ The program is controlled exclusively from the keyboard. Pay attention to bold l
 
 * `q` to quit application
 * `d` to mark current todo as done
+* `s` to skip current todo
 * `e` to edit current todo
 * `r` to remove current todo
 * `c` to create new todo

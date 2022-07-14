@@ -110,7 +110,7 @@ class CreateTodoView(GridView):
     async def on_d(self):
         await self.app.set_focus(self.date)
 
-    async def on_y(self):
+    async def on_m(self):
         await self.app.set_focus(self.year_and_month)
 
     async def on_f(self):
